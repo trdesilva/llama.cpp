@@ -24,10 +24,10 @@ struct llama_vocab {
     enum llama_vocab_type     get_type()     const;
     enum llama_vocab_pre_type get_pre_type() const;
 
-    uint32_t n_tokens() const;
+    LLAMA_API uint32_t n_tokens() const;
     uint32_t n_token_types() const;
 
-    std::string type_name() const;
+    LLAMA_API std::string type_name() const;
 
     bool is_normal      (llama_token id) const;
     bool is_unknown     (llama_token id) const;
@@ -89,7 +89,7 @@ struct llama_vocab {
                          bool   add_special,
                          bool   parse_special) const;
 
-    std::vector<llama_token> tokenize(
+    LLAMA_API std::vector<llama_token> tokenize(
             const std::string & raw_text,
                          bool   add_special,
                          bool   parse_special = false) const;
@@ -113,7 +113,7 @@ struct llama_vocab {
                          bool   remove_special,
                          bool   unparse_special) const;
 
-    std::string detokenize(
+    LLAMA_API std::string detokenize(
             const std::vector<llama_token> & tokens,
                                       bool   special) const;
 
