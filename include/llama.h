@@ -46,10 +46,6 @@
 #define LLAMA_STATE_SEQ_MAGIC   LLAMA_FILE_MAGIC_GGSQ
 #define LLAMA_STATE_SEQ_VERSION 2
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
     //
     // C interface
     //
@@ -1117,11 +1113,14 @@ extern "C" {
     /// @return The total number of bytes of the formatted prompt. If is it larger than the size of buffer, you may need to re-alloc it and then re-apply the template.
     LLAMA_API int32_t llama_chat_apply_template(
                             const char * tmpl,
-       const struct llama_chat_message * chat,
+       struct llama_chat_message * chat,
                                 size_t   n_msg,
                                   bool   add_ass,
                                   char * buf,
                                int32_t   length);
+
+    LLAMA_API int32_t llama_chat_apply_template(const char * tmpl, struct llama_chat_message ** chat, size_t n_msg,
+                                            bool add_ass, char * buf, int32_t length);
 
     // Get list of built-in chat templates
     LLAMA_API int32_t llama_chat_builtin_templates(const char ** output, size_t len);
@@ -1409,9 +1408,5 @@ extern "C" {
     LLAMA_API struct llama_perf_sampler_data llama_perf_sampler      (const struct llama_sampler * chain);
     LLAMA_API void                           llama_perf_sampler_print(const struct llama_sampler * chain);
     LLAMA_API void                           llama_perf_sampler_reset(      struct llama_sampler * chain);
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif // LLAMA_H
