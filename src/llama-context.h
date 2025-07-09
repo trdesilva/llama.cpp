@@ -29,7 +29,7 @@ struct llama_context {
 
     const llama_model & get_model() const;
 
-    uint32_t n_ctx()         const;
+    LLAMA_API uint32_t n_ctx()         const;
     uint32_t n_ctx_per_seq() const;
     uint32_t n_batch()       const;
     uint32_t n_ubatch()      const;
@@ -89,9 +89,9 @@ struct llama_context {
     // state save/load
     //
 
-    size_t state_get_size();
-    size_t state_get_data(      uint8_t * dst, size_t size);
-    size_t state_set_data(const uint8_t * src, size_t size);
+    LLAMA_API size_t state_get_size();
+    LLAMA_API size_t state_get_data(      uint8_t * dst, size_t size);
+    LLAMA_API size_t state_set_data(const uint8_t * src, size_t size);
 
     size_t state_seq_get_size(llama_seq_id seq_id);
     size_t state_seq_get_data(llama_seq_id seq_id,       uint8_t * dst, size_t size);
